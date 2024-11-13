@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Compressor</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html-minifier/4.0.0/htmlminifier.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <p style="text-align: center; font-size: 24px; font-weight: bold; color: #333;">Welcome to the HTML Compressor!</p>
+      <form action="/render" method="POST">
+        <div class="textarea-container">
+          <h2>Compress your HTML</h2>
+          <textarea name="html" id="htmlcode" placeholder="Type out HTML here" required></textarea>
+          <input type="hidden" name="initialLength" id="initialLength">
+          <input type="hidden" name="formattedLength" id="formattedLength">
+          <button type="submit" id="compress" name="compress" class="compress-btn">Submit</button>
+          <button class="share-btn">Share</button>
+        </div>
+      </form>
+      <div class="output-container">
+        <h2>Output</h2>
+        <div class="output"><%- escapedHtml || '' %></div>
+        <% if (typeof initialLength !== 'undefined' && typeof formattedLength !== 'undefined') { %>
+          <p>Initial length: <%= initialLength %>, Formatted length: <%= formattedLength %></p>
+        <% } %>
+      </div>
+      <script src="/js/main.js"></script>
+    </div>
+    <p style="text-align: center;">Thanks to <a href="/redirect?url=https://github.com/kangax/html-minifier">kangax/html-minifier</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retro Chatbot</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-output" id="chat-log">
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <!-- Button container to control layout of both forms -->
+        <div class="chat-inputs">
+            <form id="text-form" onsubmit="sendMessage(event)">
+                <input type="text" id="user-input" placeholder="Type a message..." required>
+                <button type="submit" class="send-button">Send</button>
+            </form>
+
+            <form id="audio-form" onsubmit="sendAudio(event)">
+                <input type="file" id="audio-input" accept=".mp3, .wav" required>
+                <button type="submit" class="send-audio-button">Send Audio</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/chat.js"></script>
+</body>
+</html>
+

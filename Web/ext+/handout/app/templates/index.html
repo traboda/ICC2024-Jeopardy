@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Carddict{% endblock %}
+
+{% block content %}
+    <div class="cars">
+        {% for video in videos %}
+        <div class="car-thumbnail">
+            <a href="{{ url_for('app_route.watch', video_id=video['video_id']) }}">
+                <img src="{{ video['thumbnail'] }}" alt="{{ video['title'] }} thumbnail">
+            </a>
+            <p>{{ video['title'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

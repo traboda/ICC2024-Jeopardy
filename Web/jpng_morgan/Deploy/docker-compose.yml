@@ -1,0 +1,11 @@
+services:
+  web:
+    build: ./web
+    restart: unless-stopped
+    init: true
+    ports:
+      - ${PORT_WEB:-3000}:5000
+  internal:
+    build: ./internal
+    restart: unless-stopped
+    init: true

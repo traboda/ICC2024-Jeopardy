@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col h-screen">
+    <div class="flex-grow flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+            <h1 class="text-3xl font-bold mb-4">Welcome, {{ session['username'] }}</h1>
+ 
+
+            <p class="text-lg text-green-600 mb-6">Your Tokens: <strong>{{ session['tokens'] }}</strong></p>
+
+            <div class="space-y-4">
+                <a href="{{ url_for('upload_file') }}" class="block bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-200">Upload a file</a>
+                <a href="{{ url_for('file_history') }}" class="block bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-200">File History</a>
+
+                {% if user_type == 'normal' %}
+                    <a href="{{ url_for('upgrade_to_premium') }}" class="block bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition duration-200">Upgrade to Premium</a>
+                {% endif %}
+                
+                <a href="{{ url_for('logout') }}" class="block bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition duration-200">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-200 p-4 text-center">
+        <p class="text-sm text-gray-600">© 2024 Jpngmorgan. All rights reserved.</p>
+    </footer>
+</body>
+</html>

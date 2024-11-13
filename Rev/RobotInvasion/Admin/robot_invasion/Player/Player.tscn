@@ -1,0 +1,435 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/red_guy.png" type="Texture" id=2]
+[ext_resource path="res://Hurtboxes + Hitboxes/HurtBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=4]
+[ext_resource path="res://Player/Gun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Dialogue.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "AttackDown"
+length = 0.5
+
+[sub_resource type="Animation" id=3]
+resource_name = "AttackLeft"
+length = 0.5
+
+[sub_resource type="Animation" id=4]
+resource_name = "AttackRight"
+length = 0.5
+
+[sub_resource type="Animation" id=5]
+resource_name = "AttackUp"
+length = 0.5
+
+[sub_resource type="Animation" id=6]
+resource_name = "DashDown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 63, 64, 65, 66, 67 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "dash_animation_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "DashLeft"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 58, 59, 60, 61, 62 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "dash_animation_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "DashRight"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 53, 54, 55, 56, 57 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "dash_animation_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "DashUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 48, 49, 50, 51, 52 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "dash_animation_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 17, 18, 19, 20, 21 ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 23, 24, 25, 26, 27, 27 ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RedBoi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "DashUp"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "DashLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "DashRight"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "DashDown"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=22]
+blend_point_0/node = SubResource( 18 )
+blend_point_0/pos = Vector2( 0, -1.1 )
+blend_point_1/node = SubResource( 19 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 20 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 21 )
+blend_point_3/pos = Vector2( 0, 1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "IdleLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "IdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "IdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "IdleUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=27]
+blend_point_0/node = SubResource( 23 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 24 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 25 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 26 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "RunLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "RunDown"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "RunRight"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "RunUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=32]
+blend_point_0/node = SubResource( 28 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 29 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 30 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 31 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachine" id=37]
+states/Dash/node = SubResource( 22 )
+states/Dash/position = Vector2( -7, 150 )
+states/Idle/node = SubResource( 27 )
+states/Idle/position = Vector2( 173, 150 )
+states/Run/node = SubResource( 32 )
+states/Run/position = Vector2( 347, 150 )
+transitions = [ "Idle", "Run", SubResource( 33 ), "Run", "Idle", SubResource( 34 ), "Idle", "Dash", SubResource( 35 ), "Dash", "Idle", SubResource( 36 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -129, 8.83243 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
+
+[sub_resource type="CapsuleShape2D" id=39]
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="RedBoi" type="Sprite" parent="."]
+position = Vector2( -0.228425, -9.82205 )
+texture = ExtResource( 2 )
+hframes = 68
+frame = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.0378208, 0.0354366 )
+rotation = 1.54747
+scale = Vector2( 0.362685, 0.234453 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AttackDown = SubResource( 2 )
+anims/AttackLeft = SubResource( 3 )
+anims/AttackRight = SubResource( 4 )
+anims/AttackUp = SubResource( 5 )
+anims/DashDown = SubResource( 6 )
+anims/DashLeft = SubResource( 7 )
+anims/DashRight = SubResource( 8 )
+anims/DashUp = SubResource( 9 )
+anims/IdleDown = SubResource( 10 )
+anims/IdleLeft = SubResource( 11 )
+anims/IdleRight = SubResource( 12 )
+anims/IdleUp = SubResource( 13 )
+anims/RunDown = SubResource( 14 )
+anims/RunLeft = SubResource( 15 )
+anims/RunRight = SubResource( 16 )
+anims/RunUp = SubResource( 17 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 37 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 38 )
+parameters/Dash/blend_position = Vector2( 0, 1 )
+parameters/Idle/blend_position = Vector2( 0, 1 )
+parameters/Run/blend_position = Vector2( 0, 1 )
+
+[node name="Gun" parent="." instance=ExtResource( 5 )]
+z_index = 0
+
+[node name="HurtBox" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0.224113, -0.112057 )
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2( -0.448227, -7.2837 )
+scale = Vector2( 0.445291, 0.314839 )
+shape = SubResource( 39 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.33617, 0.896454 )
+texture = ExtResource( 4 )
+
+[node name="Dialogue" parent="." instance=ExtResource( 6 )]
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+
+[editable path="HurtBox"]

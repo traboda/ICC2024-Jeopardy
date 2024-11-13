@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  coal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  bot:
+    build:
+      context: ./bot/
+      dockerfile: Dockerfile
+    ports:
+      - "1337:1337"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - coal
+      - bot

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        #chat-container {
+            width: 400px;
+            height: 600px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        #chat-header {
+            background-color: #4a5568;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        #user-input {
+            display: flex;
+            padding: 15px;
+            background-color: #f7fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        #message-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 20px;
+            font-size: 1em;
+        }
+        #send-button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #send-button:hover {
+            background-color: #3182ce;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 80%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .user-message {
+            background-color: #4299e1;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        .bot-message {
+            background-color: #edf2f7;
+            color: #2d3748;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        /* Scrollbar Styles */
+        #chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        #chat-messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+        #chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* New styles for the clear history button */
+        #clear-history {
+            width: 100%;
+            padding: 10px;
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #clear-history:hover {
+            background-color: #c53030;
+        }
+	#char-count {
+          font-size: 0.8em;
+          color: #718096;
+          text-align: right;
+          margin-top: 5px;
+        }
+
+        #char-count.limit-reached {
+          color: #e53e3e;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-header">AI Chatbot</div>
+        <div id="chat-messages"></div>
+        <div id="user-input">
+            <input type="text" id="message-input" placeholder="Type your message..." maxlength="512">
+            <button id="send-button">Send</button>
+        </div>
+        <div id="char-count">0 / 512</div>
+        <button id="clear-history">Clear History</button>
+    </div>
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const clearHistoryButton = document.getElementById('clear-history');
+        const charCount = document.getElementById('char-count');
+
+        function updateCharCount() {
+            const currentLength = messageInput.value.length;
+            charCount.textContent = `${currentLength} / 512`;
+            if (currentLength === 512) {
+                charCount.classList.add('limit-reached');
+            } else {
+                charCount.classList.remove('limit-reached');
+            }
+        }
+
+        messageInput.addEventListener('input', updateCharCount);
+
+        function addMessage(content, isUser = false) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+            messageElement.textContent = content;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            void messageElement.offsetWidth;
+
+            setTimeout(() => {
+                messageElement.style.animation = 'fadeIn 0.5s ease forwards';
+            }, 100);
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                messageInput.value = '';
+		updateCharCount();
+
+                messageInput.disabled = true;
+                sendButton.disabled = true;
+
+                try {
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: message })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('API request failed');
+                    }
+
+                    const data = await response.json();
+                    addMessage(data.reply);
+                } catch (error) {
+                    console.error('Error:', error);
+                    addMessage('Sorry, I encountered an error. Please try again.');
+                } finally {
+                    messageInput.disabled = false;
+                    sendButton.disabled = false;
+                    messageInput.focus();
+                }
+            }
+        }
+
+        async function clearHistory() {
+            try {
+                const response = await fetch('/clear_history', {
+                    method: 'POST'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to clear history');
+                }
+
+                chatMessages.innerHTML = '';
+                addMessage("History cleared. How can I help you today?", false);
+            } catch (error) {
+                console.error('Error clearing history:', error);
+                addMessage('Sorry, I encountered an error while clearing the history. Please try again.');
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        clearHistoryButton.addEventListener('click', clearHistory);
+
+        addMessage("Hello! I'm your AI assistant. How can I help you today?", false);
+    </script>
+</body>
+</html>

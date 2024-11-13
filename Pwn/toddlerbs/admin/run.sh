@@ -1,0 +1,1 @@
+qemu-system-i386 -nographic -drive file=boot1.bin,format=raw -no-shutdown -monitor none

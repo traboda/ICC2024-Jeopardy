@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffd4e5;
+            background-image: 
+                radial-gradient(circle at 10% 20%, #ff9ecd 0%, transparent 20%),
+                radial-gradient(circle at 90% 30%, #a5d8ff 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, #bbd0ff 0%, transparent 20%);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #4a90e2;
+            font-size: 1.1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-container {
+            position: relative;
+            padding-bottom: 100%;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            padding: 1rem;
+            text-align: center;
+            color: #333;
+            font-weight: 500;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.9));
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            text-align: center;
+            padding: 1rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> Pet Gallery </h1>
+            <p class="subtitle">Our Amazing Pets Collection</p>
+        </header>
+
+        <div class="gallery">
+            <!-- 10 images as specified -->
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet1.jpg" alt="Pet 1" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #1</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet2.jpg" alt="Pet 2" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #2</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet3.jpg" alt="Pet 3" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #3</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet4.jpg" alt="Pet 4" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #4</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet5.jpg" alt="Pet 5" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #5</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet6.jpg" alt="Pet 6" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #6</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet7.jpg" alt="Pet 7" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #7</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet8.jpg" alt="Pet 8" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #8</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet9.jpg" alt="Pet 9" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #9</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="https://johndoepersonabucket.s3.eu-north-1.amazonaws.com/pet10.jpg" alt="Pet 10" onerror="this.onerror=null; this.src='/api/placeholder/400/400'">
+                </div>
+                <div class="image-caption">Pet #10</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

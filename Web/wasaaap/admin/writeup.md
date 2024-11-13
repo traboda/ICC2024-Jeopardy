@@ -1,0 +1,2 @@
+This is a wasm challenge which uses emscirpten to compile the c code to wasm.
+Here in the editMsg() function there exist a overflow bug which can be used to change the pointer of the first array to point to the html that is the template inside the wasm memory and change it to the html code we needs. Then it will render the notes as javascript if exploited correctly.

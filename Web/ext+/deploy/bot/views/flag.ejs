@@ -1,0 +1,20 @@
+<form>
+    <label for="flag">Flag:</label>
+    <input type="text" id="flag" name="flag" required>
+    <button type="submit" id="submit">Set Flag</button>
+</form>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const flag = document.getElementById('flag').value;
+        const message = {
+            userId: params.get('user'),
+            password: params.get('pass'),
+            flag: flag
+        };
+
+        chrome.runtime.sendMessage(params.get('ext'), {data: message});
+    });
+</script>

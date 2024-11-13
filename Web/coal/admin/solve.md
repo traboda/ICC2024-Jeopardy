@@ -1,0 +1,9 @@
+The participants should decompile the given jar file, to see that the application is basically a file storage application like a small cloud system.
+
+Now the first thing to notice is that the when we request for http://hostname:port/index.html at first we'll see that it's a 200, and then it'll be 304 with the header ``x-cache-status:HIT`` now we know that .html files will be chached so this should open the possibilities of cache deception and cache poisoning, now when we reverse the .jar file we can see that there is a /flag endpoint with a nested endpoint which is created dynamically at run time we can see that the value for this nested endpoint is the created by the Random module in java which has implemented a pretty weak and if we have one double value we can predict all other double values..., now by reversing the source code we can see that there is an endpoint called /sever-health and by observing the source code we can see that this endpoint leaks the needed double value with this value we can reverse the LCG process and get the subsequent random doubles, this is shown in ahhh.py file.
+
+Now the nested flag endpoint is only accessible by the admin, and we do have an admin bot in place, so we basically send the url ``http://host:port/flag/generated_random_double;index.html``, now what happens here is that basically nginx will see that the request ends in .html extension and would think it would have to cache the response, and so it will cache the flag.
+
+Hence by visiting, the cache key we'll get the flag.Hence by going to ``http://host:port/flag/generated_random_double;index.html``.
+
+ie ``http://nginx:8000/flag/0.573182187573931;index.html``

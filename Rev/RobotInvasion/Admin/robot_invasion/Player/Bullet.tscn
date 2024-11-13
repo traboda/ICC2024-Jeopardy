@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Player/bullet-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://Hurtboxes + Hitboxes/HitBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/BulletHitBox.gd" type="Script" id=3]
+[ext_resource path="res://Player/BulletCol.gd" type="Script" id=4]
+[ext_resource path="res://Effects/BulletFlash.gd" type="Script" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": false,
+"name": "Animate",
+"speed": 60.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=4]
+
+[sub_resource type="CapsuleShape2D" id=5]
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 9
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "Animate"
+script = ExtResource( 5 )
+
+[node name="BulletHitBox" parent="." instance=ExtResource( 2 )]
+collision_mask = 8
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="BulletHitBox" index="0"]
+position = Vector2( 0.0828762, 0 )
+rotation = 1.5708
+scale = Vector2( 0.165545, 0.169829 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.158436, 0.153122 )
+shape = SubResource( 5 )
+
+[node name="notifier" type="VisibilityNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="screen_exited" from="notifier" to="." method="_on_notifier_screen_exited"]
+
+[editable path="BulletHitBox"]

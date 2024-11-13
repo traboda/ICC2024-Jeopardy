@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://dialogue_box.png" type="Texture" id=1]
+[ext_resource path="res://Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://NinePatchRect.gd" type="Script" id=3]
+
+[node name="Dialogue" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 53.0
+margin_top = 41.0
+margin_right = 279.0
+margin_bottom = 122.0
+texture = ExtResource( 1 )
+region_rect = Rect2( 0.339706, 0.0682979, 31.1727, 31.8276 )
+patch_margin_left = 6
+patch_margin_top = 7
+patch_margin_right = 4
+patch_margin_bottom = 7
+script = ExtResource( 3 )
+
+[node name="Enter License" type="RichTextLabel" parent="NinePatchRect"]
+margin_left = 9.0
+margin_top = 6.0
+margin_right = 178.0
+margin_bottom = 42.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "License: (Press Enter)"
+
+[node name="LineEdit" type="LineEdit" parent="NinePatchRect"]
+margin_left = 10.0
+margin_top = 23.0
+margin_right = 215.0
+margin_bottom = 47.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+margin_left = 10.0
+margin_top = 53.0
+margin_right = 174.0
+margin_bottom = 71.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Incorrect"
+
+[connection signal="text_entered" from="NinePatchRect/LineEdit" to="." method="_on_LineEdit_text_entered"]

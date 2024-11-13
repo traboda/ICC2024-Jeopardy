@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - Carddict{% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('app_route.frontend_register') }}">
+    <label for="email">Email:</label>
+    <input type="email" placeholder="Email" name="email" autocomplete="off" required>
+    
+    <label for="password">Password:</label>
+    <input type="password" placeholder="Password" name="password" autocomplete="off" required>
+    
+    <button type="submit">Register</button>
+</form>
+<a href="/login">Already have an account? Login.</a>
+{% endblock %}

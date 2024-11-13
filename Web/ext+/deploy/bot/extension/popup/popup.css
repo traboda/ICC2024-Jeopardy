@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Sans+Pro:wght@400;600&family=Fira+Code:wght@400&family=Merriweather:wght@400;700&display=swap');
+
+:root {
+    --primary-bg: #282828;
+    --primary-text: #ebdbb2;
+    --accent-color: #d79921;
+    --secondary-accent: #fabd2f;
+    --input-bg: #504945;
+    --input-border: #7c6f64;
+    --success-bg: #98971a;
+    --error-bg: #cc241d;
+
+    --primary-font: 'Source Sans Pro', sans-serif;
+    --heading-font: 'Merriweather', serif;
+    --nav-font: 'Roboto', sans-serif;
+    --logo-font: 'Fira Code', monospace;
+    --input-font: 'Source Sans Pro', sans-serif;
+    --flash-font: 'Roboto', sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 500px;
+    width: 300px;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+body input {
+    padding: 0.5rem 1rem;
+    width: 15rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    font-family: var(--input-font);
+    color: var(--primary-text);
+}
+
+body input:focus,
+body textarea:focus {
+    outline: none;
+}
+
+body label {
+    align-self: flex-start;
+    font-family: var(--input-font);
+    font-weight: 5000;
+    color: var(--primary-text);
+}
+
+body button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: var(--primary-text);
+    font-family: var(--primary-font);
+    border: 1px solid var(--input-border);
+    cursor: pointer;
+}
+
+body a {
+    margin-top: 2rem;
+    color: var(--primary-text);
+    text-decoration: none;
+}
+
+body a:hover {
+    text-decoration: underline;
+}
+
+h4 {
+    margin-top: 2rem;
+    text-decoration: underline;
+}
+
+#blockedList {
+    margin-top: 1rem;
+}

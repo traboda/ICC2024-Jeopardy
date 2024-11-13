@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Sans+Pro:wght@400;600&family=Fira+Code:wght@400&family=Merriweather:wght@400;700&display=swap');
+
+:root {
+    --primary-bg: #282828;
+    --primary-text: #ebdbb2;
+    --accent-color: #d79921;
+    --secondary-accent: #fabd2f;
+    --input-bg: #504945;
+    --input-border: #7c6f64;
+    --success-bg: #98971a;
+    --error-bg: #cc241d;
+
+    --primary-font: 'Source Sans Pro', sans-serif;
+    --heading-font: 'Merriweather', serif;
+    --nav-font: 'Roboto', sans-serif;
+    --logo-font: 'Fira Code', monospace;
+    --input-font: 'Source Sans Pro', sans-serif;
+    --flash-font: 'Roboto', sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+}
+
+body form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+body form input {
+    padding: 1rem;
+    width: 25rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    font-family: var(--input-font);
+    color: var(--primary-text);
+}
+
+body form input:focus,
+body form textarea:focus {
+    outline: none;
+}
+
+body form textarea {
+    padding: 1rem;
+    width: 25rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    font-family: var(--input-font);
+    color: var(--primary-text);
+}
+
+body form label {
+    align-self: flex-start;
+    font-family: var(--input-font);
+    font-weight: 5000;
+    color: var(--primary-text);
+}
+
+body form button {
+    margin-top: 1rem;
+    padding: 0.75rem 5rem;
+    background-color: var(--accent-color);
+    color: var(--primary-text);
+    font-family: var(--primary-font);
+    border: 1px solid var(--input-border);
+    cursor: pointer;
+}
+
+body a {
+    margin-top: 2rem;
+    color: var(--primary-text);
+    text-decoration: none;
+}
+
+body a:hover {
+    text-decoration: underline;
+}
+
+#message {
+    display: flex;
+    align-items: center;
+    font-family: var(--flash-font);
+    justify-content: center;
+    width: 25rem;
+    height: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+#message li {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    color: var(--primary-text);
+}
+
+#message li.success {
+    background-color: var(--success-bg);
+}
+
+#message li.error {
+    background-color: var(--error-bg);
+}

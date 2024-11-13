@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./app
+    ports:
+      - "1337:1337"
+    networks:
+      - ctf
+
+  bot:
+    build:
+      context: ./bot
+    ports:
+      - "1338:1338"
+    networks:
+      - ctf
+
+networks:
+  ctf:
+    driver: bridge

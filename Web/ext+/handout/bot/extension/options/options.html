@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options | Focext+</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <h1>Register | Login</h1>
+    <ul id="message"></ul>
+    <form action="/options/options.html" method="get">
+        <label for="userId">Email:</label>
+        <input type="email" id="userId" name="userId" required>
+        
+        <label for="pass">Password:</label>
+        <input type="password" id="pass" name="pass" required>
+        
+        <div class="buttons">
+            <button type="submit" name="type" value="login" id="login">Login</button>
+            <button type="submit" name="type" value="register" id="register">Register</button>
+        </div>
+    </form>
+    <script src="options.js"></script>
+</body>
+</html>

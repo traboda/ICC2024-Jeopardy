@@ -1,0 +1,1 @@
+flag=b'icc{1f_G0d_1s_d34d_3v3ryth1ng_1s_p3rm1tt3d}'

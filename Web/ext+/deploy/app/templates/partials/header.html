@@ -1,0 +1,15 @@
+<header>
+    <nav>
+        <a class="logo" href="/">Carddict</a>
+        <ul>
+            <li><a href="{{ url_for('app_route.index') }}">Home</a></li>
+            {% if user %}
+                <li><a href="/profile">{{ user }}</a></li>
+            {% else %}
+                <li><a href="{{ url_for('app_route.frontend_login') }}">Login</a></li>
+                <li><a href="{{ url_for('app_route.frontend_register') }}">Register</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('app_route.report') }}">Report</a></li>
+        </ul>
+    </nav>
+</header>

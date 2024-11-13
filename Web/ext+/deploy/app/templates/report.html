@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Report - Carddict{% endblock %}
+
+{% block content %}
+    {% if car and video_id %}
+        <p class="reported">{{ car|safe|upper }} reported!</p>
+        <iframe class="video" id="reported" src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allowfullscreen></iframe>
+    {% endif %}
+    <form action="{{ url_for('app_route.report') }}" method="POST">
+        <input type="text" name="car" placeholder="Car" autocomplete="off" required>
+        <input type="text" name="video" placeholder="Video ID (eg: PjRSbIlDc1E)" autocomplete="off" required>
+        <textarea type="text" name="content" placeholder="Content" autocomplete="off" required></textarea> 
+        <button type="submit">Report</button>
+    </form>
+{% endblock %}

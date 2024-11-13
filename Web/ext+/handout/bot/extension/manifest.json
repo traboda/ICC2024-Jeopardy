@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Focext+",
+  "description": "Focus with Focext+",
+  "version": "1.0",
+  "key": "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC/NEiT4SWo59RfOzK8KK9RsAdAqQReNOwKRhSlmh9tV7kUjvehMMYFagrEempbBdIktkx30dzW2dlenVYZ6PMUda6ZK8uGBoN0JohkdjitBgrkDtS/3HA3Q06P42uaG5k7ma9hOTycNPawDIFQCO2hPuyPB/uFM3qFtq57xrqgKrgYvG2f5XAynUgPvfvZsv90q0vo01DFy3GKoH3PgnD3gcN/QT177YxBDqRnhpuffWjM6X4KP99tdJvUhswGV/p/tY6Q+vuPRbiEUw3HfRXBS65mj0TPHOy8FiTAgJ/9y2ULZ3W2z7pNQ0Amkg05sOu5FMixVWqq7Z7iGkzThWCvAgMBAAECggEAKVyFCsBcpjIoRcWHjx559oDOwNUPJdXq7boFQ2GYxM2CMwlOVic33vn2hFQ655/Vuq1Y016pmCyeEhKVCpvS4a0nbOkFaOPF0f136cuNLRiuiHEQ4sQr3jiIKSY4I6kut67iOnToQJ5Qcvrxij+0L/ptr+85ILJnIb/H9OyjeHwEwkBGta0VCLToGAvdQvg9tcCxN2zUoZgOCBi3xQDIFwmSoxhBC+AkcN9BBQU6IpS5RLSX+ea+RUQrPrtd+LEneZ6nfSjMP+cgQT76vxqGjGRHszp1bVZ0MJQcmn6G2+Ig6ud6Ikc/Kt+or6ht8TO1KrA9oyqnUS4wyV6Y0f6wCQKBgQD7P67W2UqCEQKGJISWoYZB/tM7cwjZXgpuFSNWqufu1qqYwfl+lrqyIIrbeeMVB4Y7QEGgehwOgRdpO8KepECZ3LWK94JLhrALS+S3QXRjKdt2ydemxQL++TCkjP7V+IRz57FvnjIQmCSVhZbv7/BCwKJ2vT+AyHPvfEhXRzUq4wKBgQDC0et2Dn7bLL88sSucrT/+vO3FFhqRb7kTM8hPbyJ1/zlCvmI7vfA7h0j5TJSJCOrPsoGuBuiaTKgEslMWytJzBfPOJyUObNCKfUL7dWFPyGnE4lyh2m6N6XYxC2rLsUrT8KfUepILQGG4vndyatuvcioMaDCFgakM45Co/fUgxQKBgHMfOfCN/drdCmgGoY4Xktn4djc+PWbD9Ul9fATBKKbCS8bU0ooTbJYj3Rw1nDxNh07s4WUzrlljAyQf0sw3/LXDcJetU1Fh9JYofzMM1dR+IGYslBiBGx9TdNthE39dcOte1WmMdeounEy6um9UZKVheM+pZUiQELdCHi+HnC/7AoGAfqvnIVfDe9bYcSnxZWnwlj1ZjDAXDkFKYQXmVF+6VGaiYJdRX+7b6JjKBe6ZFZDKvEkgsHqles4k4QjhpYwy0b8pCv3AxmRSI/nWN5HWt/1jaDSWblaMU5Fc2/7EbbTVJoDvXuRjWRV/dJPDLo30UVs1o+OKyQPJWywLvxWA8NECgYAVrXFSGIwM8rQYCj/zUNnbmNVNRYu6ij4pMTtaBhYnc6ywQAztytkZTdPYdRmVp+Nprp5sJVNevEG/p5J1adGMSfC6G06/YA92rLVM8Azy7oDZpoQRD4pv/eTKtw1mzQPv3RO7eeOUe4lXQ4lZ3VEU91E3DGKECa8H6tVDtj92oQ==",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "options_page": "options/options.html",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"]
+    }
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked/blocked.html", "blocked/blocked.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "externally_connectable": {
+    "matches": ["*://*/*"]
+  }
+}

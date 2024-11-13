@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/gun.png" type="Texture" id=1]
+[ext_resource path="res://Player/Gun.gd" type="Script" id=2]
+[ext_resource path="res://Player/BulletHitBox.gd" type="Script" id=3]
+[ext_resource path="res://Hurtboxes + Hitboxes/HitBox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[node name="Gun" type="Node2D"]
+scale = Vector2( 0.75, 0.75 )
+z_index = -1
+script = ExtResource( 2 )
+bullet_speed = 300
+fire_rate = 0.15
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -3.60025, -8.25922 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="BulletPoint" type="Node2D" parent="."]
+position = Vector2( 20.394, 0 )
+
+[node name="BulletHitBox" parent="." instance=ExtResource( 4 )]
+position = Vector2( 6.65482, -0.0665474 )
+scale = Vector2( 2.6496, 1 )
+collision_mask = 8
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="BulletHitBox" index="0"]
+position = Vector2( 0.349071, -0.175815 )
+rotation = 1.5708
+scale = Vector2( 0.165545, 0.169829 )
+shape = SubResource( 1 )
+disabled = true
+
+[editable path="BulletHitBox"]

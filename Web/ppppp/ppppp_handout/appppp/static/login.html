@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body class="bg-light">
+  <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
+    <div class="card shadow-sm mb-4 login-card">
+      <div class="card-body">
+        <form action="/login" method="POST">
+          <h3 class="text-center mb-4">Login</h3>
+
+          <div class="mb-3">
+            <input type="text" class="form-control" id="login-username" name="username" placeholder="Username" required>
+          </div>
+
+          <div class="mb-3">
+            <input type="password" class="form-control" id="login-password" placeholder="Password" required>
+          </div>
+
+          <div class="mb-3">
+            <input type="text" class="form-control" id="login-randomguess" placeholder="Guess">
+          </div>
+
+          <input type="hidden" id="login-hash" name="hash">
+
+          <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary" id="login-button">Login</button>
+          </div>
+
+          <div class="text-center">
+            <span class="text-muted">Don't have an account?</span>
+            <a href="#/register.html" class="text-decoration-none">Register</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card shadow-sm text-center motd-card">
+      <div class="card-body">
+        <h5 class="card-title text-primary">Message of the Day</h5>
+        <p class="card-text font-italic">{{motd}}</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('form');
+      const usernameInput = document.getElementById('login-username');
+      const passwordInput = document.getElementById('login-password');
+      const randomguessInput = document.getElementById('login-randomguess');
+      const hashInput = document.getElementById('login-hash');
+
+      function updateHash() {
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+        const randomguess = randomguessInput.value;
+        const concatenatedString = username == "admin" ? username + password : username + randomguess + password + '1337';
+        const hash = btoa(concatenatedString);
+        hashInput.value = hash;
+      }
+
+      usernameInput.addEventListener('input', updateHash);
+      passwordInput.addEventListener('input', updateHash);
+      randomguessInput.addEventListener('input', updateHash);
+
+      form.addEventListener('submit', function(event) {
+        updateHash();
+      });
+    });
+  </script>
+</body>
+</html>

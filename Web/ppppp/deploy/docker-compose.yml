@@ -1,0 +1,37 @@
+
+services:  
+  node-app:
+    build: ./appppp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - python-app
+    environment:
+      - NODE_ENV=production
+      - PASSWORD=nevergonnaletyoudownnvergonnarememberthis
+    networks:
+      - internal_network
+
+  python-app:
+    build: ./pyppppp
+    restart: always
+    networks:
+      - internal_network
+    expose:
+      - "5000"
+
+  bot:
+    build: ./bot
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - USERNAME=admin
+      - PASSWORD=nevergonnaletyoudownnvergonnarememberthis
+    networks:
+      - internal_network
+      
+
+networks:
+  internal_network:
+    driver: bridge

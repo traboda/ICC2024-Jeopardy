@@ -1,0 +1,2 @@
+D -> D latch
+clk 1 & 2 are actually enable lines for the latches(level triggered)

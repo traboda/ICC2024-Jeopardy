@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./app
+    ports:
+      - "1337:1337"
+    networks:
+      - ctf
+    environment:
+      LOCAL_USER: "local@6A9DBE300000D2EE.com"
+      LOCAL_PASS: "DA5CED9A2EAC919454128BEEA6E2B2AA"
+
+  bot:
+    build:
+      context: ./bot
+    ports:
+      - "1338:1338"
+    networks:
+      - ctf
+    environment:
+      LOCAL_USER: "local@6A9DBE300000D2EE.com"
+      LOCAL_PASS: "DA5CED9A2EAC919454128BEEA6E2B2AA"
+      FLAG: "icc{2f5d4c54583d7393395045141058cc45}"
+      SET_URL: "http://bot:1338/set-flag"
+      BOT_SECRET: "7F08F62D3AD36CD3714357CBE11FB4D4"
+      EXT: "mmbgfjoapgboolkblcglhnpgchljfmao"
+
+networks:
+  ctf:
+    driver: bridge
